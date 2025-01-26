@@ -1,0 +1,52 @@
+.verify-email-page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.verify-email-page-header h1 {
+    color: var(--color-text-primary);
+    font-size: 1.75rem;
+}
+
+.verify-email-page-header p {
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    margin-top: 1rem;
+    word-break: break-word;
+}
+
+.verify-email-page-instructions {
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.verify-email-page-instructions p {
+    color: var(--color-text-primary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.verify-email-page-spam-notice {
+    margin-top: 0.75rem;
+    color: #666;
+    font-style: italic;
+}
+
+.verify-email-page-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.verify-email-page-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.verify-email-page-footer a:hover {
+    text-decoration: underline;
+}
