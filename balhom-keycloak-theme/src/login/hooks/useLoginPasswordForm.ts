@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../../../node_modules/react-i18next";
 
-export const useRegisterPasswordForm = (): [
+export const useLoginPasswordForm = (): [
   string,
   string,
   (newPassword: string) => void,

@@ -2,7 +2,7 @@ import "./LoginResetPassword.css";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "../../../node_modules/react-i18next";
 import FormContainer from "./FormContainer";
 import { useState } from "react";
 import { useEmailForm } from "../hooks/useEmailForm";
