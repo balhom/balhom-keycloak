@@ -8,6 +8,7 @@ import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFo
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import FormContainer from "./FormContainer";
 
 type RegisterProps = PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I18n> & {
     UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -30,16 +31,9 @@ export default function Register(props: RegisterProps) {
     const [isFormSubmittable, setIsFormSubmittable] = useState(false);
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
 
+    // messageHeader !== undefined ? advancedMsg(messageHeader) : msg("registerTitle")
     return (
-        <Template
-            kcContext={kcContext}
-            i18n={i18n}
-            doUseDefaultCss={doUseDefaultCss}
-            classes={classes}
-            headerNode={messageHeader !== undefined ? advancedMsg(messageHeader) : msg("registerTitle")}
-            displayMessage={messagesPerField.exists("global")}
-            displayRequiredFields
-        >
+        <FormContainer>
             <form id="kc-register-form" className={kcClsx("kcFormClass")} action={url.registrationAction} method="post">
                 <UserProfileFormFields
                     kcContext={kcContext}
@@ -102,7 +96,7 @@ export default function Register(props: RegisterProps) {
                     )}
                 </div>
             </form>
-        </Template>
+        </FormContainer>
     );
 }
 

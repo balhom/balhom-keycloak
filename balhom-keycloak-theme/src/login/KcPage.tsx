@@ -8,8 +8,10 @@ import Template from "keycloakify/login/Template";
 import LoginVerifyEmail from "./pages/LoginVerifyEmail";
 import Login from "./pages/Login";
 import LoginResetPassword from "./pages/LoginResetPassword";
+import Register from "./pages/Register";
+import Error from "./pages/Error";
 const UserProfileFormFields = lazy(
-    () => import("keycloakify/login/UserProfileFormFields")
+    () => import("./UserProfileFormFields")
 );
 
 const doMakeUserConfirmPassword = true;
@@ -36,6 +38,20 @@ export default function KcPage(props: { kcContext: KcContext }) {
             return (<LoginResetPassword {...{ kcContext, i18n, classes }}
                 Template={Template}
                 doUseDefaultCss={false}
+            />
+            )
+        case "register.ftl":
+            return (<Register {...{ kcContext, i18n, classes }}
+                Template={Template}
+                doUseDefaultCss={true}
+                UserProfileFormFields={UserProfileFormFields}
+                doMakeUserConfirmPassword={doMakeUserConfirmPassword}
+            />
+            )
+        case "error.ftl":
+            return (<Error {...{ kcContext, i18n, classes }}
+                Template={Template}
+                doUseDefaultCss={true}
             />
             )
         default:

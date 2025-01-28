@@ -1,0 +1,30 @@
+.app-error-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.app-error-page-title {
+    font-size: 1.5rem;
+    color: var(--color-error);
+    margin-bottom: 1rem;
+}
+
+.app-error-page-text {
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+}
+
+.app-error-page-home-link {
+    margin-top: 2rem;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.app-error-page-home-link:hover {
+    text-decoration: underline;
+}
