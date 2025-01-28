@@ -1,6 +1,6 @@
 .verify-email-page-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .verify-email-page-header h1 {
@@ -26,12 +26,6 @@
     color: var(--color-text-primary);
     font-size: 0.875rem;
     line-height: 1.5;
-}
-
-.verify-email-page-spam-notice {
-    margin-top: 0.75rem;
-    color: #666;
-    font-style: italic;
 }
 
 .verify-email-page-footer {

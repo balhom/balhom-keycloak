@@ -1,11 +1,12 @@
+import "../main.css";
 import { Suspense, lazy } from "react";
 import type { ClassKey } from "keycloakify/login";
 import type { KcContext } from "./KcContext";
 import { useI18n } from "./i18n";
 import DefaultPage from "keycloakify/login/DefaultPage";
 import Template from "keycloakify/login/Template";
-import Login from "./pages/Login";
 import LoginVerifyEmail from "./pages/LoginVerifyEmail";
+import Login from "./pages/Login";
 import LoginResetPassword from "./pages/LoginResetPassword";
 const UserProfileFormFields = lazy(
     () => import("keycloakify/login/UserProfileFormFields")

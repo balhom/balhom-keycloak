@@ -20,6 +20,7 @@ export default {
     confirmPassword: "Confirmar contraseña",
     haveAccount: "¿Ya tienes una cuenta?",
     forgotPassword: "¿Olvidaste tu contraseña?",
+    rememberMe: "Recordarme",
     enterEmail:
         "Introduce tu correo electrónico para restablecer tu contraseña.",
     checkEmail: "Revisa tu correo electrónico",

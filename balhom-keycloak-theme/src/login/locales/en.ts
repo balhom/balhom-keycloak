@@ -18,6 +18,7 @@ export default {
     password: "Password",
     confirmPassword: "Confirm Password",
     forgotPassword: "Forgot Password?",
+    rememberMe: "Remember me",
     noAccount: "Don't have an account?",
     haveAccount: "Already have an account?",
     createAccountSubTitle: "Create your account",

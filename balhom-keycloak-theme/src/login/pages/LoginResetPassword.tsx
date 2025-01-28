@@ -1,85 +1,63 @@
 import "./LoginResetPassword.css";
+import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
-import { useTranslation } from "../../../node_modules/react-i18next";
 import FormContainer from "./FormContainer";
-import { useState } from "react";
-import { useEmailForm } from "../hooks/useEmailForm";
+import AppErrorText from "../components/AppErrorText";
 import AppTextInput from "../components/AppTextInput";
 import AppFormButton from "../components/AppFormButton";
-import axios from "axios";
 
 export default function LoginResetPassword(props: PageProps<Extract<KcContext, { pageId: "login-reset-password.ftl" }>, I18n>) {
-    const { kcContext } = props;
+    const { kcContext, i18n, doUseDefaultCss, classes } = props;
 
-    const { t } = useTranslation();
+    const { kcClsx } = getKcClsx({
+        doUseDefaultCss,
+        classes
+    });
 
-    const { url } = kcContext;
+    const { url, realm, auth, messagesPerField } = kcContext;
 
-    const [email, emailError, handleEmailChange, isEmailValid] = useEmailForm();
+    const { msg, msgStr } = i18n;
 
-    const [submitted, setSubmitted] = useState(false);
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-
-        handleEmailChange(email);
-
-        if (!isEmailValid()) {
-            return;
-        }
-
-        const bodyFormData = new FormData();
-        bodyFormData.append("username", email)
-        axios.post(url.loginAction, bodyFormData)
-
-        setSubmitted(true);
-    };
-
-    if (submitted) {
-        return (
-            <FormContainer>
-                {/* Header Part */}
-                <div className="forgot-password-page-header">
-                    <h1>{t("checkEmail")}</h1>
-                    <p>{t("resetInstructions")}</p>
-                </div>
-                <div className="forgot-password-page-footer">
-                    <a href={url.loginUrl}>{t("backToSignInRedirect")}</a>
-                </div>
-            </FormContainer>
-        );
-    }
 
     return (
         <FormContainer>
             <div className="forgot-password-page-header">
-                <h1>{t("forgotPassword")}</h1>
-                <p>{t("enterEmail")}</p>
+                <h1>{msg("emailForgotTitle")}</h1>
+                <p>{realm.duplicateEmailsAllowed ? msg("emailInstructionUsername") : msg("emailInstruction")}</p>
             </div>
-            <form id="kc-reset-password-form" className="forgot-password-page-form" onSubmit={handleSubmit}>
+            <form id="kc-reset-password-form" className="forgot-password-page-form" action={url.loginAction} method="post">
                 <div className="forgot-password-page-form-group">
-                    <label
-                        className="forgot-password-page-label"
-                        htmlFor="username"
-                    >
-                        {t("email")}
-                    </label>
+                    <div className={kcClsx("kcLabelWrapperClass")}>
+                        <label htmlFor="username" className="forgot-password-page-label">
+                            {!realm.loginWithEmailAllowed
+                                ? msg("username")
+                                : !realm.registrationEmailAsUsername
+                                    ? msg("usernameOrEmail")
+                                    : msg("email")}
+                        </label>
+                    </div>
 
-                    <AppTextInput
-                        id="username"
-                        text={email}
-                        onTextChange={handleEmailChange}
-                        errorText={emailError}
-                        placeholder={t("emailPlaceholder")}
-                    />
+                    <div>
+                        <AppTextInput
+                            id="username"
+                            name="username"
+                            defaultValue={auth.attemptedUsername ?? ""}
+                        />
+                        {messagesPerField.existsError("username") && (
+                            <AppErrorText text={messagesPerField.getFirstError("username")} />
+                        )}
+                    </div>
                 </div>
 
-                <AppFormButton text={t("resetPassword")} />
+                <AppFormButton
+                    text={msgStr("doSubmit")}
+                />
             </form>
+
             <div className="forgot-password-page-footer">
-                <a href={url.loginUrl}>{t("backToSignInRedirect")}</a>
+                <a href={url.loginUrl}>{msg("backToLogin")}</a>
             </div>
         </FormContainer>
     );

@@ -1,44 +1,32 @@
-import AppErrorText from "./AppErrorText";
 import "./AppTextInput.css";
 
 interface Props {
   id: string;
-  text: string;
-  onTextChange: (value: string) => void;
-  errorText?: string;
-  maxLength?: number;
-  placeholder?: string;
+  name: string;
+  tabIndex?: number;
+  defaultValue: string;
+  autoComplete?: string;
 }
 
 const AppTextInput: React.FC<Props> = ({
   id,
-  text,
-  onTextChange,
-  errorText,
-  maxLength,
-  placeholder,
+  name,
+  tabIndex,
+  defaultValue,
+  autoComplete,
 }: Props) => {
   return (
     <div>
       <input
         id={id}
+        name={name}
+        tabIndex={tabIndex}
         className="app-text-input"
         type="text"
-        value={text}
-        onChange={(e) => {
-          if (maxLength && e.target.value.length > maxLength) {
-            return;
-          }
-          onTextChange(e.target.value);
-        }}
-        placeholder={placeholder}
+        defaultValue={defaultValue}
+        autoFocus
+        autoComplete={autoComplete}
       />
-      {maxLength && (
-        <p className="app-text-input-char-count">
-          {text.length}/{maxLength}
-        </p>
-      )}
-      <AppErrorText text={errorText} />
     </div>
   );
 };

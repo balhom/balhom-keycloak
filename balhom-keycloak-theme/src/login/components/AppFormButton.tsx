@@ -1,14 +1,24 @@
 import "./AppFormButton.css";
 
 interface Props {
+  id?: string;
+  name?: string;
   text: string;
+  isDisabled?: boolean;
+  tabIndex?: number;
 }
 
-const AppFormButton = ({ text }: Props) => {
+const AppFormButton = ({ id, name, text, isDisabled, tabIndex, }: Props) => {
   return (
-    <button type="submit" className="app-form-button">
-      {text}
-    </button>
+    <input
+      tabIndex={tabIndex}
+      disabled={isDisabled}
+      className="app-form-button"
+      name={name}
+      id={id}
+      type="submit"
+      value={text}
+    />
   );
 };
 

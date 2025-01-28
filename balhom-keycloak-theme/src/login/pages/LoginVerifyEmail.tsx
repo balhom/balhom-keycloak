@@ -1,30 +1,32 @@
-import "./main.css";
 import "./LoginVerifyEmail.css";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import FormContainer from "./FormContainer";
-import { useTranslation } from "../../../node_modules/react-i18next";
 
 export default function LoginVerifyEmail(props: PageProps<Extract<KcContext, { pageId: "login-verify-email.ftl" }>, I18n>) {
-    const { kcContext } = props;
+    const { kcContext, i18n } = props;
 
-    const { t } = useTranslation();
+    const { msg } = i18n;
 
-    const { url } = kcContext;
+    const { url, user } = kcContext;
 
     return (
         <FormContainer>
             <div className="verify-email-page-header">
-                <h1>{t("verifyEmailTitle")}</h1>
-                <p>{t("verificationSent")}</p>
+                <h1>{msg("emailVerifyTitle")}</h1>
             </div>
-            <div className="verify-email-instructions">
-                <p>{t("checkInbox")}</p>
-                <p className="verify-email-spam-notice">{t("checkSpam")}</p>
+            <div className="verify-email-page-instructions">
+                <p>{msg("emailVerifyInstruction1", user?.email ?? "")}</p>
             </div>
-            <div className="verify-email-footer">
-                <a href={url.loginAction}>{t("backToSignInRedirect")}</a>
+            <div className="verify-email-page-footer">
+                <p>
+                    {msg("emailVerifyInstruction2")}
+                    <br />
+                    <a href={url.loginAction}>{msg("doClickHere")}</a>
+                    &nbsp;
+                    {msg("emailVerifyInstruction3")}
+                </p>
             </div>
         </FormContainer>
     );

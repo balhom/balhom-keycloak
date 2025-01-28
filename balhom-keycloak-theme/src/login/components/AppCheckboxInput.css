@@ -1,0 +1,18 @@
+.app-checkbox-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.app-checkbox-input input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: 4px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
