@@ -1,3 +1,4 @@
+import "./Register.css";
 import type { JSX } from "keycloakify/tools/JSX";
 import { useState } from "react";
 import type { LazyOrNot } from "keycloakify/tools/LazyOrNot";
@@ -16,7 +17,7 @@ type RegisterProps = PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I
 };
 
 export default function Register(props: RegisterProps) {
-    const { kcContext, i18n, doUseDefaultCss, Template, classes, UserProfileFormFields, doMakeUserConfirmPassword } = props;
+    const { kcContext, i18n, doUseDefaultCss, classes, UserProfileFormFields, doMakeUserConfirmPassword } = props;
 
     const { kcClsx } = getKcClsx({
         doUseDefaultCss,
@@ -34,6 +35,11 @@ export default function Register(props: RegisterProps) {
     // messageHeader !== undefined ? advancedMsg(messageHeader) : msg("registerTitle")
     return (
         <FormContainer>
+            {/* Header Part */}
+            <div className="register-page-header">
+                <h1>{messageHeader !== undefined ? advancedMsg(messageHeader) : msg("registerTitle")}</h1>
+            </div>
+
             <form id="kc-register-form" className={kcClsx("kcFormClass")} action={url.registrationAction} method="post">
                 <UserProfileFormFields
                     kcContext={kcContext}

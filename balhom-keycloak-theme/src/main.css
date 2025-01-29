@@ -2,10 +2,13 @@
     --primary-color: #4caf50;
     --primary-color-hover: #43a047;
 
+    --color-bg-primary: #ffffff;
     --color-bg-secondary: #f8fafc;
 
     --color-text-primary: #333333;
     --color-text-secondary: #64748b;
+    
+    --color-border: #e2e8f0;
 
     --color-error: #ef4444;
 }

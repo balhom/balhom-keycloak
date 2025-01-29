@@ -1,7 +1,7 @@
 - [x] Login
 - [x] Login Reset Password
-- [ ] Login Verify Email
-- [ ] Error
+- [x] Login Verify Email
+- [x] Error
 - [ ] Register
 - [ ] LoginUpdatePassword
 - [ ] UpdateEmail

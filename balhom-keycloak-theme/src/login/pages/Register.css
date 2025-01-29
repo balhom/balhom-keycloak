@@ -1,0 +1,44 @@
+.register-page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.register-page-header h1 {
+    color: var(--color-text-primary);
+    font-size: 1.75rem;
+}
+
+.register-page-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.register-page-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.register-page-label {
+    color: var(--color-text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.register-page-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.register-page-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-page-footer a:hover {
+    text-decoration: underline;
+}
