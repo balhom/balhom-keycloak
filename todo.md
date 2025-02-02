@@ -5,3 +5,4 @@
 - [ ] Register
 - [ ] LoginUpdatePassword
 - [ ] UpdateEmail
+- [ ] Delete user confirmation
