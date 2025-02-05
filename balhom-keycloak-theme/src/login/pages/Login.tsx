@@ -7,7 +7,7 @@ import FormContainer from "./FormContainer";
 import AppTextInput from "../components/AppTextInput";
 import AuthPasswordInput from "../components/AuthPasswordInput";
 import AppCheckboxInput from "../components/AppCheckboxInput";
-import AppFormButton from "../components/AppFormButton";
+import AppFormInputButton from "../components/AppFormInputButton";
 import AppErrorText from "../components/AppErrorText";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
@@ -102,7 +102,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                     </div>
 
                     <input type="hidden" id="id-hidden-input" name="credentialId" value={auth.selectedCredential} />
-                    <AppFormButton
+                    <AppFormInputButton
                         tabIndex={7}
                         isDisabled={isLoginButtonDisabled}
                         name="login"

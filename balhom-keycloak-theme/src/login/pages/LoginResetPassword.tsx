@@ -6,7 +6,7 @@ import type { I18n } from "../i18n";
 import FormContainer from "./FormContainer";
 import AppErrorText from "../components/AppErrorText";
 import AppTextInput from "../components/AppTextInput";
-import AppFormButton from "../components/AppFormButton";
+import AppFormInputButton from "../components/AppFormInputButton";
 
 export default function LoginResetPassword(props: PageProps<Extract<KcContext, { pageId: "login-reset-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, classes } = props;
@@ -51,7 +51,7 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                     </div>
                 </div>
 
-                <AppFormButton
+                <AppFormInputButton
                     text={msgStr("doSubmit")}
                 />
             </form>

@@ -2,7 +2,9 @@
 - [x] Login Reset Password
 - [x] Login Verify Email
 - [x] Error
-- [ ] Register
+- [X] Register
 - [ ] LoginUpdatePassword
 - [ ] UpdateEmail
 - [ ] Delete user confirmation
+- [ ] Terms and conditions page
+- [ ] User deleted page

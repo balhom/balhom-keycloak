@@ -6,23 +6,17 @@ interface Props {
     text: string;
     isDisabled?: boolean;
     tabIndex?: number;
-    dataSitekey?: string;
-    dataCallback?: () => void;
-    dataAction?: string;
 }
 
-const AppFormButton: React.FC<Props> = ({
+const AppFormInputButton: React.FC<Props> = ({
     id,
     name,
     text,
     isDisabled,
-    tabIndex,
-    dataSitekey,
-    dataCallback,
-    dataAction
+    tabIndex
 }: Props) => {
     return (
-        <button
+        <input
             tabIndex={tabIndex}
             disabled={isDisabled}
             className="app-form-button"
@@ -30,11 +24,8 @@ const AppFormButton: React.FC<Props> = ({
             id={id}
             type="submit"
             value={text}
-            data-sitekey={dataSitekey}
-            data-callback={dataCallback}
-            data-action={dataAction}
         />
     );
 };
 
-export default AppFormButton;
+export default AppFormInputButton;
