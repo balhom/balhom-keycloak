@@ -1,0 +1,46 @@
+.info-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.info-header h1 {
+    color: var(--color-text-primary);
+    font-size: 1.75rem;
+}
+
+.info-header p {
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    margin-top: 1rem;
+    word-break: break-word;
+}
+
+.info-instructions {
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0 0 0;
+}
+
+.info-instructions p {
+    color: var(--color-text-primary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.info-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.info-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.info-footer a:hover {
+    text-decoration: underline;
+}

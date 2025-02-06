@@ -1,0 +1,54 @@
+.terms-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.terms-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.terms-message {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.terms-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.terms-button {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.terms-button.confirm {
+    background: var(--primary-color);
+    border: none;
+    color: white;
+}
+
+.terms-button.confirm:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.terms-button.cancel {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    color: #64748b;
+}
+
+.terms-button.cancel:hover {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border-hover);
+}

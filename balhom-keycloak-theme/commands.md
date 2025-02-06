@@ -6,6 +6,12 @@
 npx keycloakify eject-page
 ~~~
 
+* Add Storybook
+
+~~~
+npx keycloakify add-story
+~~~
+
 * Run Storybooks
 
 ~~~
