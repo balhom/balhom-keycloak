@@ -6,5 +6,5 @@
 - [x] Info
 - [ ] LoginUpdatePassword
 - [ ] UpdateEmail
-- [ ] Delete Account Confirmation
+- [x] Delete Account Confirmation
 - [x] Terms
