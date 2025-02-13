@@ -2,7 +2,7 @@ import "./UpdateEmail.css";
 import type { JSX } from "keycloakify/tools/JSX";
 import { useState } from "react";
 import type { LazyOrNot } from "keycloakify/tools/LazyOrNot";
-import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx";
+import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFormFieldsProps";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
@@ -47,7 +47,7 @@ export default function UpdateEmail(props: UpdateEmailProps) {
                 />
 
                 <div className="update-email-page-form-group">
-                    <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
+                    <LogoutOtherSessions i18n={i18n} />
 
                     <div id="kc-form-buttons" className="update-email-actions">
                         <input disabled={!isFormSubmittable} className="update-email-button confirm" type="submit" value={msgStr("doSubmit")} />
@@ -63,13 +63,13 @@ export default function UpdateEmail(props: UpdateEmailProps) {
     );
 }
 
-function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
-    const { kcClsx, i18n } = props;
+function LogoutOtherSessions(props: { i18n: I18n }) {
+    const { i18n } = props;
 
     const { msgStr } = i18n;
 
     return (
-        <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
+        <div id="kc-form-options">
             <AppCheckboxInput
                 id="logout-sessions"
                 name="logout-sessions"
