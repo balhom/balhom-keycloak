@@ -3,8 +3,9 @@ import "./AppCheckboxInput.css";
 interface Props {
     id: string;
     name: string;
-    tabIndex: number;
+    tabIndex?: number;
     text: string;
+    value?: string;
     defaultChecked: boolean;
 }
 
@@ -13,7 +14,8 @@ const AppCheckboxInput: React.FC<Props> = ({
     name,
     tabIndex,
     text,
-    defaultChecked,
+    value,
+    defaultChecked
 }: Props) => {
     return (
         <label className="app-checkbox-input">
@@ -22,6 +24,7 @@ const AppCheckboxInput: React.FC<Props> = ({
                 name={name}
                 tabIndex={tabIndex}
                 type="checkbox"
+                value={value}
                 defaultChecked={defaultChecked}
             />{" "}
             {text}
