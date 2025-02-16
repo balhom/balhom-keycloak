@@ -15,6 +15,7 @@ import DeleteAccountConfirm from "./pages/DeleteAccountConfirm";
 import Terms from "./pages/Terms";
 import LoginUpdatePassword from "./pages/LoginUpdatePassword";
 import UpdateEmail from "./pages/UpdateEmail";
+import LoginUpdateProfile from "./pages/LoginUpdateProfile";
 
 const UserProfileFormFields = lazy(() => import("./UserProfileFormFields"));
 
@@ -64,6 +65,16 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     {...{ kcContext, i18n, classes }}
                     Template={Template}
                     doUseDefaultCss={false}
+                />
+            );
+        case "login-update-profile.ftl":
+            return (
+                <LoginUpdateProfile
+                    {...{ kcContext, i18n, classes }}
+                    Template={Template}
+                    doUseDefaultCss={false}
+                    UserProfileFormFields={UserProfileFormFields}
+                    doMakeUserConfirmPassword={doMakeUserConfirmPassword}
                 />
             );
         case "update-email.ftl":

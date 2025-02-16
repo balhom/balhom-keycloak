@@ -1,0 +1,52 @@
+.login-update-profile-page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-update-profile-page-header h1 {
+    color: var(--color-text-primary);
+    font-size: 1.75rem;
+}
+
+.login-update-profile-page-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.login-update-profile-page-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.login-update-profile-page-button {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.login-update-profile-page-button.confirm {
+    background: var(--primary-color);
+    border: none;
+    color: white;
+}
+
+.login-update-profile-page-button.confirm:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.login-update-profile-page-button.cancel {
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    color: #64748b;
+}
+
+.login-update-profile-page-button.cancel:hover {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border-hover);
+}
