@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Start Keycloak in the background
-/opt/bitnami/keycloak/bin/kc.sh start --http-enabled=true --http-host=0.0.0.0 &
+/opt/bitnami/keycloak/bin/kc.sh start \
+  --http-enabled=true \
+  --hostname-strict=false \
+  --http-host=0.0.0.0 &
 
 # Wait for Keycloak to be ready
 until curl -s http://localhost:8080/realms/master; do
