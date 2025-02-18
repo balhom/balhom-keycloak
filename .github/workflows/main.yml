@@ -40,10 +40,16 @@ jobs:
 
       - name: Build and Push Docker image
         run: |
-          IMAGE_TAG="${DOCKER_REPO_NAME}:latest"
+          export APP_VERSION=$(node -p "require('./balhom-keycloak-theme/package.json').version")
+          echo "Using version ${APP_VERSION}"
 
-          docker build -t ${IMAGE_TAG} .
+          IMAGE_TAG="${DOCKER_REPO_NAME}:${APP_VERSION}-react"
+          LATEST_TAG="${DOCKER_REPO_NAME}:latest"
+
+          docker build . -t ${IMAGE_TAG}
+          docker tag ${IMAGE_TAG} ${LATEST_TAG}
 
           docker push ${IMAGE_TAG}
+          docker push ${LATEST_TAG}
         env:
           DOCKER_REPO_NAME: ${{ secrets.DOCKER_REPO_NAME }}
