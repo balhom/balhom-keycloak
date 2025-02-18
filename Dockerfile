@@ -1,8 +1,9 @@
 FROM bitnami/keycloak:26.1.0
 
 COPY ./realm-config.json /opt/bitnami/keycloak/data/import/realm-config.json
-
 COPY ./balhom-keycloak-theme/dist_keycloak/keycloak-theme-for-kc-all-other-versions.jar /opt/bitnami/keycloak/providers/balhom-keycloak-theme.jar
+
+ENV KEYCLOAK_IMPORT=/opt/bitnami/keycloak/data/import/realm-config.json
 
 EXPOSE 8080
 
