@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Start Keycloak in the background
-/opt/bitnami/scripts/keycloak/run.sh &
+keycloak start &
 
 # Wait for Keycloak to be ready
 until curl -s http://localhost:8080/realms/master; do
