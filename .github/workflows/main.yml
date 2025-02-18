@@ -43,7 +43,7 @@ jobs:
           export APP_VERSION=$(node -p "require('./balhom-keycloak-theme/package.json').version")
           echo "Using version ${APP_VERSION}"
 
-          IMAGE_TAG="${DOCKER_REPO_NAME}:${APP_VERSION}-react"
+          IMAGE_TAG="${DOCKER_REPO_NAME}:${APP_VERSION}"
           LATEST_TAG="${DOCKER_REPO_NAME}:latest"
 
           docker build . -t ${IMAGE_TAG}
