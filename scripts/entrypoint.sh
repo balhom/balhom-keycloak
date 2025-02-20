@@ -6,8 +6,7 @@ set -e
 /opt/bitnami/scripts/init.sh &
 
 # Execute original entrypoint
-exec /bin/bash /opt/bitnami/keycloak/bin/kc.sh start \
-   --http-enabled=true \
+exec /bin/bash /opt/bitnami/keycloak/bin/kc.sh start-dev \
    --db postgres \
    --db-password ${KEYCLOAK_DATABASE_PASSWORD} \
    --db-url-host ${KEYCLOAK_DATABASE_HOST} \
