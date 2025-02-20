@@ -31,6 +31,8 @@ if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
     -s smtpServer.auth=false -s smtpServer.ssl=none -s smtpServer.replyTo=${KEYCLOAK_INIT_SMTP_RECEIVER} \
     -s smtpServer.from=${KEYCLOAK_INIT_SMTP_SENDER}
 
+  kcadm update realms/${KEYCLOAK_INIT_REALM} -s loginTheme=balhom-keycloak-theme
+
   # Init realm user
   echo "Creating '${KEYCLOAK_INIT_USER}' user in '${KEYCLOAK_INIT_REALM}' realm"
   
@@ -47,7 +49,7 @@ if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
 
   kcadm.sh create clients -r "${KEYCLOAK_INIT_REALM}" -s clientId="${KEYCLOAK_INIT_CLIENT}" -s enabled=true -s \
     publicClient=true -s redirectUris='["*"]' -s webOrigins='["*"]' -s directAccessGrantsEnabled=true \
-    -s standardFlowEnabled=true  -s "loginTheme=balhom-keycloak-theme"
+    -s standardFlowEnabled=true
   
   echo "Created new client with id '${KEYCLOAK_INIT_CLIENT}'"
 else
