@@ -44,14 +44,28 @@ if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
   
   echo "Created '${KEYCLOAK_INIT_USER}' user in '${KEYCLOAK_INIT_REALM}' realm"
 
-  # Create client
+  # Create client for WEB
   echo "Creating '${KEYCLOAK_INIT_CLIENT}' client"
 
   kcadm.sh create clients -r "${KEYCLOAK_INIT_REALM}" -s clientId="${KEYCLOAK_INIT_CLIENT}" -s enabled=true -s \
     publicClient=true -s redirectUris='["*"]' -s webOrigins='["*"]' -s directAccessGrantsEnabled=true \
     -s standardFlowEnabled=true
   
-  echo "Created new client with id '${KEYCLOAK_INIT_CLIENT}'"
+  echo "Created new client '${KEYCLOAK_INIT_CLIENT}'"
+  
+  # Create client for API
+  echo "Creating '${KEYCLOAK_INIT_API_CLIENT}' client"
+
+  kcadm.sh create clients -r "${KEYCLOAK_INIT_REALM}" -s clientId="${KEYCLOAK_INIT_API_CLIENT}" \
+    -s secret="${KEYCLOAK_INIT_API_CLIENT_SECRET}" \
+    -s enabled=true -s publicClient=false -s redirectUris='["*"]' -s serviceAccountsEnabled=true \
+    -s directAccessGrantsEnabled=true
+
+  kcadm.sh add-roles --cclientid "realm-management" -r "${KEYCLOAK_INIT_REALM}" \
+    --uusername "service-account-${KEYCLOAK_INIT_API_CLIENT}" --rolename manage-users
+  
+  echo "Created new client '${KEYCLOAK_INIT_API_CLIENT}'"
+
 else
   >&2 echo "Realm already exists, skipping keycloak init"
 fi
