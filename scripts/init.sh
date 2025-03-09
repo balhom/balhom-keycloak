@@ -28,7 +28,7 @@ kcadm.sh config credentials --server http://localhost:8080 \
 if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
   echo "Creating '${KEYCLOAK_INIT_REALM}' realm"
 
-  kcadm.sh create realms -s realm="${KEYCLOAK_REALM_NAME}" \
+  kcadm.sh create realms -s realm="${KEYCLOAK_INIT_REALM}" \
     -s enabled=true -s registrationEmailAsUsername=true \
     -s loginTheme=balhom-keycloak-theme -s verifyEmail=true \
     -s resetPasswordAllowed=true -s loginWithEmailAllowed=true
