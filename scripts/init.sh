@@ -20,24 +20,35 @@ echo "Starting initialization of Keycloak server"
 ## Log in as master realm admin
 echo "Logging into Keycloak realm master as ${KC_BOOTSTRAP_ADMIN_USERNAME}"
 
-kcadm.sh config credentials --server http://localhost:8080 --realm master \
-  --user "${KC_BOOTSTRAP_ADMIN_USERNAME}" --password "${KC_BOOTSTRAP_ADMIN_PASSWORD}"
+kcadm.sh config credentials --server http://localhost:8080 \
+  --realm master --user "${KC_BOOTSTRAP_ADMIN_USERNAME}" \
+  --password "${KC_BOOTSTRAP_ADMIN_PASSWORD}"
 
 ## Realm creation step
 if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
   echo "Creating '${KEYCLOAK_INIT_REALM}' realm"
 
+  kcadm.sh create realms -s realm="${KEYCLOAK_REALM_NAME}" \
+    -s enabled=true -s registrationEmailAsUsername=true \
+    -s loginTheme=balhom-keycloak-theme -s verifyEmail=true \
+    -s resetPasswordAllowed=true -s \
+    -s loginWithEmailAllowed=true
+
   # Set BalHom login theme
-  kcadm.sh update realms/${KEYCLOAK_INIT_REALM} -s loginTheme=balhom-keycloak-theme
+  # kcadm.sh update realms/${KEYCLOAK_INIT_REALM} \
+  #   -s loginTheme=balhom-keycloak-theme
 
   # Init realm user
   if [[ -n "${KEYCLOAK_INIT_USER}" && -n "${KEYCLOAK_INIT_USER_PASSWORD}" ]]; then
     echo "Creating '${KEYCLOAK_INIT_USER}' user in '${KEYCLOAK_INIT_REALM}' realm"
     
-    kcadm.sh create users -r "${KEYCLOAK_INIT_REALM}" -s username="${KEYCLOAK_INIT_USER}" -s enabled=true \
-      -s email="${KEYCLOAK_INIT_USER}" -s emailVerified=true -s firstName="Test" -s lastName="Test"
+    kcadm.sh create users -r "${KEYCLOAK_INIT_REALM}" \
+      -s username="${KEYCLOAK_INIT_USER}" -s enabled=true \
+      -s email="${KEYCLOAK_INIT_USER}" -s emailVerified=true \
+      -s firstName="Test" -s lastName="Test"
     
-    kcadm.sh set-password -r "${KEYCLOAK_INIT_REALM}" --username "${KEYCLOAK_INIT_USER}" \
+    kcadm.sh set-password -r "${KEYCLOAK_INIT_REALM}" \
+      --username "${KEYCLOAK_INIT_USER}" \
       --new-password "${KEYCLOAK_INIT_USER_PASSWORD}"
     
     echo "Created '${KEYCLOAK_INIT_USER}' user in '${KEYCLOAK_INIT_REALM}' realm"
@@ -45,8 +56,10 @@ if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
     # Create client for WEB
     echo "Creating '${KEYCLOAK_INIT_CLIENT}' client"
 
-    kcadm.sh create clients -r "${KEYCLOAK_INIT_REALM}" -s clientId="${KEYCLOAK_INIT_CLIENT}" -s enabled=true -s \
-      publicClient=true -s redirectUris='["*"]' -s webOrigins='["*"]' -s directAccessGrantsEnabled=true \
+    kcadm.sh create clients -r "${KEYCLOAK_INIT_REALM}" \
+      -s clientId="${KEYCLOAK_INIT_CLIENT}" -s enabled=true -s \
+      publicClient=true -s redirectUris='["*"]' \
+      -s webOrigins='["*"]' -s directAccessGrantsEnabled=true \
       -s standardFlowEnabled=true
     
     echo "Created new client '${KEYCLOAK_INIT_CLIENT}'"
@@ -57,13 +70,16 @@ if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
   # Create client for API
   echo "Creating '${KEYCLOAK_INIT_API_CLIENT}' client"
 
-  kcadm.sh create clients -r "${KEYCLOAK_INIT_REALM}" -s clientId="${KEYCLOAK_INIT_API_CLIENT}" \
+  kcadm.sh create clients -r "${KEYCLOAK_INIT_REALM}" \
+    -s clientId="${KEYCLOAK_INIT_API_CLIENT}" \
     -s secret="${KEYCLOAK_INIT_API_CLIENT_SECRET}" \
-    -s enabled=true -s publicClient=false -s redirectUris='["*"]' -s serviceAccountsEnabled=true \
-    -s directAccessGrantsEnabled=true
+    -s enabled=true -s publicClient=false -s redirectUris='["*"]' \
+    -s serviceAccountsEnabled=true -s directAccessGrantsEnabled=true
 
-  kcadm.sh add-roles --cclientid "realm-management" -r "${KEYCLOAK_INIT_REALM}" \
-    --uusername "service-account-${KEYCLOAK_INIT_API_CLIENT}" --rolename manage-users
+  kcadm.sh add-roles --cclientid "realm-management" \
+    -r "${KEYCLOAK_INIT_REALM}" \
+    --uusername "service-account-${KEYCLOAK_INIT_API_CLIENT}" \
+    --rolename manage-users
   
   echo "Created new client '${KEYCLOAK_INIT_API_CLIENT}'"
 
