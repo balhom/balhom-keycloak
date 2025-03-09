@@ -31,8 +31,7 @@ if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
   kcadm.sh create realms -s realm="${KEYCLOAK_REALM_NAME}" \
     -s enabled=true -s registrationEmailAsUsername=true \
     -s loginTheme=balhom-keycloak-theme -s verifyEmail=true \
-    -s resetPasswordAllowed=true -s \
-    -s loginWithEmailAllowed=true
+    -s resetPasswordAllowed=true -s loginWithEmailAllowed=true
 
   # Set BalHom login theme
   # kcadm.sh update realms/${KEYCLOAK_INIT_REALM} \
