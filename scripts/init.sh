@@ -33,10 +33,6 @@ if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
     -s loginTheme=balhom-keycloak-theme -s verifyEmail=true \
     -s resetPasswordAllowed=true -s loginWithEmailAllowed=true
 
-  # Set BalHom login theme
-  # kcadm.sh update realms/${KEYCLOAK_INIT_REALM} \
-  #   -s loginTheme=balhom-keycloak-theme
-
   # Init realm user
   if [[ -n "${KEYCLOAK_INIT_USER}" && -n "${KEYCLOAK_INIT_USER_PASSWORD}" ]]; then
     echo "Creating '${KEYCLOAK_INIT_USER}' user in '${KEYCLOAK_INIT_REALM}' realm"
