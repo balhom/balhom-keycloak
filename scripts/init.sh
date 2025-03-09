@@ -34,6 +34,10 @@ if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
     -s registrationAllowed=true -s rememberMe=true \
     -s resetPasswordAllowed=true -s loginWithEmailAllowed=true
 
+  kcadm.sh update realms/${KEYCLOAK_INIT_REALM} -s 'requiredActions=[]' \
+    -s 'attributes.userProfileEnabled=true' \
+    -s 'userProfile={"attributes": {"firstName": {"required": false}, "lastName": {"required": false}}}'
+
   # Init realm user
   if [[ -n "${KEYCLOAK_INIT_USER}" && -n "${KEYCLOAK_INIT_USER_PASSWORD}" ]]; then
     echo "Creating '${KEYCLOAK_INIT_USER}' user in '${KEYCLOAK_INIT_REALM}' realm"
