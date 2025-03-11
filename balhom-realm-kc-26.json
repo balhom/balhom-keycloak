@@ -13,10 +13,6 @@
     "requiredCredentials": [
         "password"
     ],
-    "attributes": {
-        "user.profile.enabled": true,
-        "user.profile.json": "{\"attributes\":[]}"
-    },
     "smtpServer": {},
     "loginTheme": "balhom-keycloak-theme",
     "accountTheme": "",

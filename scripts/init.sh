@@ -36,6 +36,7 @@ if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
   #  -s resetPasswordAllowed=true -s loginWithEmailAllowed=true
 
   kcadm.sh update realms/${KEYCLOAK_INIT_REALM} -f /opt/bitnami/scripts/balhom-realm-kc-26.json
+  kcadm.sh update users/profile -f /opt/bitnami/scripts/balhom-user-profile-schema.json -r "${KEYCLOAK_INIT_REALM}"
 
   # Init realm user
   if [[ -n "${KEYCLOAK_INIT_USER}" && -n "${KEYCLOAK_INIT_USER_PASSWORD}" ]]; then
