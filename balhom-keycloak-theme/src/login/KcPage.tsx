@@ -1,5 +1,5 @@
 import "../main.css";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import type { ClassKey } from "keycloakify/login";
 import type { KcContext } from "./KcContext";
 import { useI18n } from "./i18n";
@@ -16,6 +16,7 @@ import Terms from "./pages/Terms";
 import LoginUpdatePassword from "./pages/LoginUpdatePassword";
 import UpdateEmail from "./pages/UpdateEmail";
 import LoginUpdateProfile from "./pages/LoginUpdateProfile";
+import { ThemeModeEnum } from "./ThemeModeEnum";
 
 const UserProfileFormFields = lazy(() => import("./UserProfileFormFields"));
 
@@ -23,6 +24,19 @@ const doMakeUserConfirmPassword = true;
 
 export default function KcPage(props: { kcContext: KcContext }) {
     const { kcContext } = props;
+
+    useEffect(() => {
+        let themeMode = ThemeModeEnum.Light;
+
+        const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+        if (darkThemeMq.matches) {
+            themeMode = ThemeModeEnum.Dark;
+        }
+        document.documentElement.classList.toggle(
+            "dark",
+            themeMode == ThemeModeEnum.Dark
+        );
+    }, []);
 
     const { i18n } = useI18n({ kcContext });
 
