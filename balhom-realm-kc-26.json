@@ -1,0 +1,40 @@
+{
+    "realm": "balhom-realm",
+    "notBefore": 0,
+    "enabled": true,
+    "registrationAllowed": true,
+    "registrationEmailAsUsername": true,
+    "rememberMe": true,
+    "verifyEmail": true,
+    "loginWithEmailAllowed": true,
+    "duplicateEmailsAllowed": false,
+    "resetPasswordAllowed": true,
+    "editUsernameAllowed": false,
+    "requiredCredentials": [
+        "password"
+    ],
+    "components": {
+        "org.keycloak.userprofile.UserProfileProvider": [
+            {
+                "providerId": "declarative-user-profile",
+                "subComponents": {},
+                "config": {
+                    "kc.user.profile.config": [
+                        "{\"attributes\":[{\"name\":\"username\",\"displayName\":\"${username}\",\"validations\":{\"length\":{\"min\":3,\"max\":255},\"username-prohibited-characters\":{},\"up-username-not-idn-homograph\":{}},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false},{\"name\":\"email\",\"displayName\":\"${email}\",\"validations\":{\"email\":{},\"length\":{\"max\":255}},\"required\":{\"roles\":[\"user\"]},\"permissions\":{\"view\":[\"admin\",\"user\"],\"edit\":[\"admin\",\"user\"]},\"multivalued\":false}],\"groups\":[{\"name\":\"user-metadata\",\"displayHeader\":\"User metadata\",\"displayDescription\":\"Attributes, which refer to user metadata\"}]}"
+                    ]
+                }
+            }
+        ]
+    },
+    "smtpServer": {},
+    "loginTheme": "balhom-keycloak-theme",
+    "accountTheme": "",
+    "adminTheme": "",
+    "emailTheme": "",
+    "internationalizationEnabled": true,
+    "supportedLocales": [
+        "en",
+        "es"
+    ],
+    "defaultLocale": "en"
+}

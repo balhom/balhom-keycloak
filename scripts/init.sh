@@ -28,11 +28,14 @@ kcadm.sh config credentials --server http://localhost:8080 \
 if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
   echo "Creating '${KEYCLOAK_INIT_REALM}' realm"
 
-  kcadm.sh create realms -s realm="${KEYCLOAK_INIT_REALM}" \
-    -s enabled=true -s registrationEmailAsUsername=true \
-    -s loginTheme=balhom-keycloak-theme -s verifyEmail=true \
-    -s registrationAllowed=true -s rememberMe=true \
-    -s resetPasswordAllowed=true -s loginWithEmailAllowed=true
+  kcadm.sh create realms -s realm="${KEYCLOAK_INIT_REALM}"
+  #kcadm.sh create realms -s realm="${KEYCLOAK_INIT_REALM}" \
+  #  -s enabled=true -s registrationEmailAsUsername=true \
+  #  -s loginTheme=balhom-keycloak-theme -s verifyEmail=true \
+  #  -s registrationAllowed=true -s rememberMe=true \
+  #  -s resetPasswordAllowed=true -s loginWithEmailAllowed=true
+
+  kcadm.sh update realms/${KEYCLOAK_INIT_REALM} -f /opt/bitnami/scripts/balhom-realm-kc-26.json
 
   # Init realm user
   if [[ -n "${KEYCLOAK_INIT_USER}" && -n "${KEYCLOAK_INIT_USER_PASSWORD}" ]]; then
