@@ -29,11 +29,6 @@ if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
   echo "Creating '${KEYCLOAK_INIT_REALM}' realm"
 
   kcadm.sh create realms -s realm="${KEYCLOAK_INIT_REALM}"
-  #kcadm.sh create realms -s realm="${KEYCLOAK_INIT_REALM}" \
-  #  -s enabled=true -s registrationEmailAsUsername=true \
-  #  -s loginTheme=balhom-keycloak-theme -s verifyEmail=true \
-  #  -s registrationAllowed=true -s rememberMe=true \
-  #  -s resetPasswordAllowed=true -s loginWithEmailAllowed=true
 
   kcadm.sh update realms/${KEYCLOAK_INIT_REALM} -f /opt/bitnami/scripts/balhom-realm-kc-26.json
   kcadm.sh update users/profile -f /opt/bitnami/scripts/balhom-user-profile-schema.json -r "${KEYCLOAK_INIT_REALM}"
@@ -44,9 +39,8 @@ if ! kcadm.sh get realms/${KEYCLOAK_INIT_REALM} &>/dev/null; then
     
     kcadm.sh create users -r "${KEYCLOAK_INIT_REALM}" \
       -s username="${KEYCLOAK_INIT_USER}" -s enabled=true \
-      -s email="${KEYCLOAK_INIT_USER}" -s emailVerified=true \
-      -s firstName="Test" -s lastName="Test"
-    
+      -s email="${KEYCLOAK_INIT_USER}" -s emailVerified=true
+
     kcadm.sh set-password -r "${KEYCLOAK_INIT_REALM}" \
       --username "${KEYCLOAK_INIT_USER}" \
       --new-password "${KEYCLOAK_INIT_USER_PASSWORD}"
